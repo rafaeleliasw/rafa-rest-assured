@@ -21,6 +21,7 @@ import static io.restassured.RestAssured.given;
 
     public static String accessToken = "";
     public static String userId = "xpyan8kpzi8nfu9nci6gfc1nq";
+    public static String bearer = "Bearer BQDo7Z7YdCpdZNSGwjn1JAarCe7u2LCY1zZj__4iegEz2-sPuxKB5WWjYvWb5wOveNxBzEeYKsPFF5t37qtNtNx6DVZB2jT3bh2o-S5cx5aPt7n9FEv8SoNdZxlv2H9chqIGS9Ix49clChE74s4-gXDeJ73dJFSe1dZXNTswNBfSoNMGVraJ24M-tPQZZCbprD3_kZjyfvyY_j-rhbdnhIrJ7YSTMWQWVELNEDwDJaIsfFrgNFEHiLs7J-3I44AoqvBQtZs_t7tDBdBbIDzFfLa-lp6UiWncHNymdxp8peWmTg";
 
     @BeforeClass
     public static void authenticationSpotify(){
@@ -65,7 +66,27 @@ import static io.restassured.RestAssured.given;
     }
 
     @Test
-    public void shouldReturnBabasonicos() {
+    public void createPlaylist(){
+
+        String payload = "{\n" +
+                "  \"name\": \"Testing List 2\",\n" +
+                "  \"public\": 0\n" +
+                "}";
+
+        given().
+                header("Authorization", bearer).
+                accept(ContentType.JSON).
+                pathParam("userId", this.userId).
+                body(payload).
+                when().
+                post("users/{userId}/playlists").
+                then().
+                assertThat().
+                statusCode(201);
+    }
+
+    @Test
+    public void searchShouldReturnBabasonicos() {
 
         SearchArtist searchArtist =
 
