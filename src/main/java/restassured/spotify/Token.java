@@ -1,4 +1,4 @@
-package spotify;
+package restassured.spotify;
 
 import org.apache.commons.codec.binary.Base64;
 

@@ -1,37 +1,30 @@
-package spotify;
+package restassuredTests.spotify;
 
-import entities.SearchArtist;
 import io.restassured.RestAssured;
-
-import static io.restassured.RestAssured.given;
-
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import restassuredTests.BaseTest;
+import restassuredTests.entities.SearchArtist;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import restassured.spotify.*;
+
+import static io.restassured.RestAssured.given;
 
 
 /**
  * @author Rafael Elias
  */
 
-public class SpotifyTests {
+public class SpotifyTests extends BaseTest {
 
     public static String accessToken = "";
     public static String userId = "xpyan8kpzi8nfu9nci6gfc1nq";
     public static String bearer = "Bearer BQAYcZLsyMv_GXIz1attJ9LvxezgnqNLlWnbXieM1IAM-UP-SD3AOqbQRVDEthfjN3rsfOI7EYSPUeOp4VhMOws65zvgzgIDYY8pgoy7klEXKgf70s4A4Oox4eIWY74sTFe_wW5li40sDDGXM94V2xaL9xjXWPZvxXx3xPscQqXlfWm0v2oL3xs1gtTW4D9zhxJTUc_zIgCdXyzEQtVNBuwQPQLCzwMMr-HlDIl3QKOeTiIrw3TnL47dr9LjJv2_kH4l5whzrk-b2D8BQ1GKm3qsv_kZbviaw5-dHfECgYlFTg";
-
-    public String generateStringFromResource(String path) throws IOException {
-
-        return new String(Files.readAllBytes(Paths.get(path)));
-
-    }
 
     @BeforeClass
     public static void authenticationSpotify() {

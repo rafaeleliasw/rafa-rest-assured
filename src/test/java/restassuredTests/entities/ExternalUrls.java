@@ -1,4 +1,4 @@
-package entities;
+package restassuredTests.entities;
 
 import com.fasterxml.jackson.annotation.*;
 

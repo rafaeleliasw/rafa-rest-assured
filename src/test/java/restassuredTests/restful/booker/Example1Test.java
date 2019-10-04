@@ -1,4 +1,4 @@
-package examples;
+package restassuredTests.restful.booker;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.*;
  * @author Rafael Elias
  */
 
-public class Chapter1Test {
+public class Example1Test {
 
     @Test
     public void getBooking1() {

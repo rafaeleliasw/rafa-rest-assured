@@ -1,4 +1,4 @@
-package examples;
+package restassuredTests.restful.booker;
 
 import io.restassured.http.ContentType;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*;
  * @author Rafael Elias
  */
 
-public class Chapter2Test {
+public class Example2Test {
 
     @Test
     public void checkStatusCode_expectHttp200() {
@@ -20,7 +20,8 @@ public class Chapter2Test {
             get("https://restful-booker.herokuapp.com/booking/1").
         then().
             assertThat().
-            statusCode(200);
+                statusCode(200);
+
     }
 
     @Test

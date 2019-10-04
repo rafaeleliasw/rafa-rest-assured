@@ -1,4 +1,4 @@
-package examples;
+package restassuredTests.restful.booker;
 
 import com.tngtech.java.junit.dataprovider.*;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.*;
  */
 
 @RunWith(DataProviderRunner.class)
-public class Chapter3Test {
+public class Example3Test {
 
     @DataProvider
     public static Object[][] bookingIdAndNames() {

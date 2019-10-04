@@ -1,4 +1,4 @@
-package entities;
+package restassuredTests.entities;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;

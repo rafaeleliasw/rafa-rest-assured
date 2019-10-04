@@ -1,8 +1,6 @@
-package entities;
+package restassuredTests.entities;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import java.util.List;
 
 @JsonPropertyOrder({
         "artists"

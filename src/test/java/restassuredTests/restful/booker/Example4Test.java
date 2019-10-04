@@ -1,4 +1,4 @@
-package examples;
+package restassuredTests.restful.booker;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.equalTo;
  * @author Rafael Elias
  */
 
-public class Chapter4Test {
+public class Example4Test {
 
     private static RequestSpecification requestSpec;
 
