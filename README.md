@@ -3,7 +3,7 @@
 ## About this repository
 This repository contains test samples that I am using to learn REST Assured.
 
-##What do I need to run these samples?
+## What do I need to run these samples?
 A Java 8 JDK and Maven. That's it.
 
 ## What APIs are used?
