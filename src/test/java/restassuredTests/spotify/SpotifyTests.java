@@ -2,17 +2,15 @@ package restassuredTests.spotify;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import restassuredTests.BaseTest;
 import restassuredTests.entities.SearchArtist;
-
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import restassured.spotify.*;
-
 import static io.restassured.RestAssured.given;
 
 
@@ -22,29 +20,21 @@ import static io.restassured.RestAssured.given;
 
 public class SpotifyTests extends BaseTest {
 
-    public static String accessToken = "";
-    public static String userId = "xpyan8kpzi8nfu9nci6gfc1nq";
-    public static String bearer = "Bearer BQAYcZLsyMv_GXIz1attJ9LvxezgnqNLlWnbXieM1IAM-UP-SD3AOqbQRVDEthfjN3rsfOI7EYSPUeOp4VhMOws65zvgzgIDYY8pgoy7klEXKgf70s4A4Oox4eIWY74sTFe_wW5li40sDDGXM94V2xaL9xjXWPZvxXx3xPscQqXlfWm0v2oL3xs1gtTW4D9zhxJTUc_zIgCdXyzEQtVNBuwQPQLCzwMMr-HlDIl3QKOeTiIrw3TnL47dr9LjJv2_kH4l5whzrk-b2D8BQ1GKm3qsv_kZbviaw5-dHfECgYlFTg";
+    public static final String clientId = "";
+    public static final String redirect_uri = "";
+    public static final String scope = "u";
+    public static final String response_type = "";
+    public static final int  state = 123;
+    public static final String userId = "";
+    public static String bearer = "";
+    public static final String username = "";
+    public static final String password = "";
 
     @BeforeClass
-    public static void authenticationSpotify() {
-        String authToken = Token.getEncodedToken("6aa4abdbfa974048883221cf82d67cc8", "71185044846946b68a7b379f67dd561f");
-        generateAccessToken(authToken);
+    public static void authenticationSpotify() throws InterruptedException, UnsupportedEncodingException {
+        bearer = Token.getSpotifyAccessToken(username, password, clientId, redirect_uri, scope, response_type, state);
     }
 
-    private static void generateAccessToken(String authToken) {
-        RestAssured.baseURI = "https://accounts.spotify.com/api";
-
-        Response response = given().
-                header("Authorization", "Basic " + authToken).
-                contentType("application/x-www-form-urlencoded").
-                formParam("grant_type", "client_credentials").
-                log().all().
-                when().
-                post("token");
-
-        accessToken = response.jsonPath().get("access_token");
-    }
 
     @BeforeClass
     public static void beforeTests() {
@@ -52,10 +42,11 @@ public class SpotifyTests extends BaseTest {
         RestAssured.basePath = "/v1/";
     }
 
+
     @Test
     public void getUser() {
         given().
-                auth().oauth2(this.accessToken).
+                header("Authorization", "Bearer "+bearer).
                 accept(ContentType.JSON).
                 pathParam("userId", this.userId).
                 log().all().
@@ -73,9 +64,8 @@ public class SpotifyTests extends BaseTest {
 
         String payload = generateStringFromResource("./Files/CreatePlayList.json");
 
-
         given().
-                header("Authorization", bearer).
+                header("Authorization", "Bearer "+bearer).
                 accept(ContentType.JSON).
                 pathParam("userId", this.userId).
                 body(payload).
@@ -92,7 +82,7 @@ public class SpotifyTests extends BaseTest {
         SearchArtist searchArtist =
 
                 given().
-                        auth().oauth2(this.accessToken).
+                        header("Authorization", "Bearer "+bearer).
                         accept(ContentType.JSON).
                         queryParam("q", "Babasonicos").
                         queryParam("type", "artist").
