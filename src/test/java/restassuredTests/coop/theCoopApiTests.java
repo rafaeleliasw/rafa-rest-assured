@@ -4,26 +4,22 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import restassured.spotify.Token;
-
-import static io.restassured.RestAssured.enableLoggingOfRequestAndResponseIfValidationFails;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class theCoopApiTests {
 
     public static String accessToken;
-    public static String clientId = "RafaTest";
-    public static String clientSecret = "bedc2730b436d3414c63a9476f62373a";
-    public static String userId = "461";
+    public static final String clientId = "";
+    public static final String clientSecret = "";
+    public static final String userId = "";
 
     @BeforeClass
     public static void authenticationCoop() {
-        String authToken = Token.getEncodedToken(clientId, clientSecret);
-        generateAccessToken(authToken);
+        generateAccessToken();
     }
 
-    private static void generateAccessToken(String authToken) {
+    private static void generateAccessToken() {
         RestAssured.baseURI = "http://coop.apps.symfonycasts.com/";
 
         Response response =

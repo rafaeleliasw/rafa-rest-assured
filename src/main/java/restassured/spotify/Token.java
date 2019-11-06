@@ -2,15 +2,22 @@ package restassured.spotify;
 
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.Time;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Token {
 
@@ -26,10 +33,17 @@ public class Token {
         String encodedUri = URLEncoder.encode(redirect_uri, "UTF-8");
         String query = "client_id="+clientId+"&redirect_uri="+encodedUri+"&scope="+scope+"&response_type="+response_type+"&state="+state;
         WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://accounts.spotify.com/authorize?"+query);
-        driver.findElement(By.id("login-username")).sendKeys(email);
-        driver.findElement(By.id("login-password")).sendKeys(password);
-        driver.findElement(By.id("login-button")).click();
+        // Set Username
+        WebElement username = driver.findElement(By.id("login-username"));
+        username.sendKeys(email);
+        //Set Password
+        WebElement userpwd = driver.findElement(By.id("login-password"));
+        userpwd.sendKeys(password);
+        //Click on Log In
+        WebElement login = driver.findElement(By.id("login-button"));
+        login.click();
         Thread.sleep(2000);
         String uri = driver.getCurrentUrl();
         UriComponents uriInfo = UriComponentsBuilder.fromUriString(uri).build();
@@ -51,4 +65,6 @@ public class Token {
         }
         return output;
     }
+
+
 }
