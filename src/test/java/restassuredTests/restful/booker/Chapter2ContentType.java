@@ -1,7 +1,7 @@
 package restassuredTests.restful.booker;
 
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 

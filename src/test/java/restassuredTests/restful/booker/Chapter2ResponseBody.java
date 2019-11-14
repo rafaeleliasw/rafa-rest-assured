@@ -1,6 +1,6 @@
 package restassuredTests.restful.booker;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -83,5 +83,19 @@ public class Chapter2ResponseBody {
                 log().all().
                 assertThat().
                 body("totalprice", greaterThan(0));
+    }
+
+    @Test
+    public void checkingXmlResponses() {
+
+        given().
+                header("Accept", "application/xml").
+                when().
+                get("https://restful-booker.herokuapp.com/booking/1").
+                then().
+                log().all().
+                assertThat().
+                body("booking.firstname", equalTo("Jim")).
+                body("booking.bookingdates.checkin", equalTo("2017-03-13"));
     }
 }

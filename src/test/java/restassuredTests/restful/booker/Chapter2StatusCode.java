@@ -1,6 +1,6 @@
 package restassuredTests.restful.booker;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
@@ -20,7 +20,6 @@ public class Chapter2StatusCode {
                 then().
                 assertThat().
                 statusCode(200);
-
     }
 
 }

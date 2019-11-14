@@ -7,14 +7,12 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.kohsuke.rngom.parse.host.Base;
-import restassuredTests.BaseTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-import static org.openqa.grid.common.RegistrationRequest.build;
+
 
 /**
  * @author Rafael Elias

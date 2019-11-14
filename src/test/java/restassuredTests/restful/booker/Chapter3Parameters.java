@@ -1,8 +1,8 @@
 package restassuredTests.restful.booker;
 
-import com.tngtech.java.junit.dataprovider.*;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
+
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -12,14 +12,14 @@ import static org.hamcrest.Matchers.*;
  * Parameters in RESTful APIs
  */
 
-@RunWith(DataProviderRunner.class)
+
 public class Chapter3Parameters {
 
     public static final String bookingId = "1";
     public static final String firstName = "Eric";
     public static final String lastName = "Jackson";
 
-    @DataProvider
+    @DataProvider(name = "zipCodesAndPlaces")
     public static Object[][] zipCodesAndPlaces() {
         return new Object[][] {
                 { "us", "90210", "Beverly Hills" },
@@ -28,7 +28,7 @@ public class Chapter3Parameters {
         };
     }
 
-    @DataProvider
+    @DataProvider(name = "comments")
     public static Object[][] comments() {
         return new Object[][] {
                 { 1, "Eliseo@gardner.biz"},       //postId, Email
@@ -51,8 +51,7 @@ public class Chapter3Parameters {
                 body("lastname", equalTo(lastName));
     }
 
-    @Test
-    @UseDataProvider("zipCodesAndPlaces")
+    @Test(dataProvider = "zipCodesAndPlaces")
     public void requestZipCodesFromCollection_checkPlaceNameInResponseBody_expectSpecifiedPlaceName(String countryCode, String zipCode, String expectedPlaceName)
     {
         given().
@@ -64,8 +63,7 @@ public class Chapter3Parameters {
                 body("places[0].'place name'", equalTo(expectedPlaceName));
     }
 
-    @Test
-    @UseDataProvider("comments")
+    @Test(dataProvider = "comments")
     public void getCommetsOfAPost(int postId, String email) {
 
          given()

@@ -6,33 +6,35 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import restassuredTests.BaseTest;
 import restassuredTests.entities.SearchArtist;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import restassured.spotify.*;
+
 import static io.restassured.RestAssured.given;
+
+import static restassuredTests.TestUtils.generateStringFromResource;
+import static restassuredTests.TestUtils.getSpotifyAccessToken;
 
 
 /**
  * @author Rafael Elias
  */
 
-public class SpotifyTests extends BaseTest {
+public class SpotifyTests {
 
-    public static final String clientId = "";
-    public static final String redirect_uri = "";
-    public static final String scope = "u";
-    public static final String response_type = "";
+    public static final String clientId = "6aa4abdbfa974048883221cf82d67cc8";
+    public static final String redirect_uri = "http://mysite.com/callback/";
+    public static final String scope = "user-read-private user-read-email";
+    public static final String response_type = "token";
     public static final int  state = 123;
-    public static final String userId = "";
+    public static final String userId = "xpyan8kpzi8nfu9nci6gfc1nq";
     public static String bearer = "";
-    public static final String username = "";
-    public static final String password = "";
+    public static final String username = "codingclubrosario2019@gmail.com";
+    public static final String password = "C@ding.club.2k19";
 
     @BeforeClass
     public static void authenticationSpotify() throws InterruptedException, UnsupportedEncodingException {
-        bearer = Token.getSpotifyAccessToken(username, password, clientId, redirect_uri, scope, response_type, state);
+        bearer = getSpotifyAccessToken(username, password, clientId, redirect_uri, scope, response_type, state);
     }
 
 
@@ -46,7 +48,7 @@ public class SpotifyTests extends BaseTest {
     @Test
     public void getUser() {
         given().
-                header("Authorization", "Bearer "+bearer).
+                headers("Authorization", "Bearer "+bearer, "Accept", "application/xml").
                 accept(ContentType.JSON).
                 pathParam("userId", this.userId).
                 log().all().

@@ -1,25 +1,23 @@
-package restassured.spotify;
+package restassuredTests;
 
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.sql.Time;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class Token {
+public class TestUtils {
 
     public static String getEncodedToken(String clientid, String clientSecret){
         String idSecret = clientid +":"+clientSecret;
@@ -64,6 +62,12 @@ public class Token {
             output.put (values[0], (values.length > 1 ? values[1] : ""));
         }
         return output;
+    }
+
+    public static String generateStringFromResource(String path) throws IOException {
+
+        return new String(Files.readAllBytes(Paths.get(path)));
+
     }
 
 

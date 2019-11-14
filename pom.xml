@@ -10,8 +10,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <restassured.version>3.3.0</restassured.version>
-        <junit.version>4.12</junit.version>
-        <junit.dataprovider.version>2.4</junit.dataprovider.version>
         <jackson.databind.version>2.9.8</jackson.databind.version>
     </properties>
     <dependencies>
@@ -19,18 +17,6 @@
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>3.3.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.tngtech.junit.dataprovider</groupId>
-            <artifactId>junit4-dataprovider</artifactId>
-            <version>${junit.dataprovider.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
