@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class TestUtils {
+public final class TestUtils {
 
     public static String getEncodedToken(String clientid, String clientSecret){
         String idSecret = clientid +":"+clientSecret;

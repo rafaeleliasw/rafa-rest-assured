@@ -5,13 +5,12 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import restassuredTests.TestUtils;
 
 import java.io.IOException;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
-import static restassuredTests.TestUtils.getEncodedToken;
-import static restassuredTests.TestUtils.generateStringFromResource;
 
 
 /**
@@ -21,8 +20,8 @@ import static restassuredTests.TestUtils.generateStringFromResource;
  */
 public class Chapter5Headers{
 
-    public static final String username = "admin";
-    public static final String password = "password123";
+    public static final String username = "";
+    public static final String password = "";
     public static String token = "";
     public static String cookieToken = "";
     private static RequestSpecification requestSpec;
@@ -37,7 +36,7 @@ public class Chapter5Headers{
                 build();
 
         //Get Encoded Token in Base64
-        token = getEncodedToken(username, password);
+        token = TestUtils.getEncodedToken(username, password);
 
         //Creates a new auth token to use for access to the PUT and DELETE /booking
         getCookieToken();
@@ -47,7 +46,7 @@ public class Chapter5Headers{
     }
 
     public static void getCookieToken() throws IOException {
-        String payload = generateStringFromResource("./Files/CookieToken.json");
+        String payload = TestUtils.generateStringFromResource("./Files/CookieToken.json");
 
         Response response =
             given().
@@ -106,7 +105,7 @@ public class Chapter5Headers{
     @Test(priority = 1)
     public void updateABookingAuthorizationHeader() throws IOException {
 
-        String payload = generateStringFromResource("./Files/UpdateBooking.json");
+        String payload = TestUtils.generateStringFromResource("./Files/UpdateBooking.json");
 
         given().
                 header("Authorization", "Basic "+token).
