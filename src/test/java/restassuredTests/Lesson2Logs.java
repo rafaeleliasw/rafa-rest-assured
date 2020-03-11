@@ -1,4 +1,4 @@
-package restassuredTests.restful.booker;
+package restassuredTests;
 
 import org.testng.annotations.Test;
 

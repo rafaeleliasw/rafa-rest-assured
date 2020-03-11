@@ -1,4 +1,4 @@
-package restassuredTests.restful.booker;
+package restassuredTests;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
