@@ -2,24 +2,23 @@ package restassuredTests.restful.booker;
 
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
 /**
- *  * @author Rafael Elias
- *  Checking the Response Status Code
+ * * @author Rafael Elias
  */
 
-public class Chapter2StatusCode {
+public class Lesson1Example {
 
     @Test
-    public void checkStatusCode_expectHttp200() {
+    public void getBooking1() {
 
         given().
                 when().
                 get("https://restful-booker.herokuapp.com/booking/1").
                 then().
                 assertThat().
-                statusCode(200);
+                body("bookingdates.checkin", equalTo("2019-12-21"));
     }
-
 }
