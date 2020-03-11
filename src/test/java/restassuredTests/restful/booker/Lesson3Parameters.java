@@ -6,6 +6,11 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
+/**
+ * @author Rafael Elias
+ * Parameters in RESTful APIs
+ */
+
 public class Lesson3Parameters {
 
     public static final String bookingId = "1";
