@@ -16,17 +16,6 @@ public class TestUtils {
         return new String(bytesEncoded);
     }
 
-    public static Map<String, String> parseUrlFragment(String url) {
-
-        Map<String, String> output = new LinkedHashMap<>();
-        String[] keys = url.split ("&");
-        for (String key : keys) {
-            String[] values = key.split ("=");
-            output.put (values[0], (values.length > 1 ? values[1] : ""));
-        }
-        return output;
-    }
-
     public static String generateStringFromResource(String path) throws IOException {
 
         return new String(Files.readAllBytes(Paths.get(path)));
